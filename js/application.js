@@ -10,6 +10,21 @@ function displayMessage(message, title, type, timer){
 	});
 }
 
+function verifyContribui(elementToShow){
+	let _customer = getCustomer();
+	if(_customer){
+		if(_customer.contribui){
+			$("#"+elementToShow).show();
+			$("#"+elementToShow+"-nc").hide();
+		} else {
+			$("#"+elementToShow).hide();
+			$("#"+elementToShow+"-nc").show();
+		}
+	} else {
+		$("#joinSystem").show();
+	}
+}
+
 function register(_url){
 
 	let _userUri = "Não Logado";

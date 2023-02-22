@@ -47,57 +47,66 @@ $percent = ($qtdContribuintes / $qtdLotes) * 100;
 		</li>		
 	</ul>
   	<p></p>
+	<h2>Transparência Financeira</h2>
+	
 	<div class="row">
 		<div id="content" class="col-sm-12">
-		
-			<h2>Transparência Financeira</h2>
-			<br/>
-        	<br/>
-        	
-        	<div class="row">
-            	<div class="col-sm-8">
-        			<div class="card">
-                      	<div class="card-header border-0">
-                        	<div class="d-flex justify-content-between">
-                          		<h4 class="card-title">Dados dos &uacute;ltimos 12 meses:</h4>
-                        	</div>
-                      	</div>
-                      	<div class="card-body">
-                            <div class="position-relative mb-4">
-                              <canvas id="sales-chart" height="200"></canvas>
-                            </div>
-        
-                            <div class="d-flex flex-row justify-content-end">
-                              <span class="mr-2">
-                                <i class="fas fa-square" style="color: #007bff;"></i> Receitas
-                              </span>
-            
-                              <span>
-                                <i class="fas fa-square" style="color: #FF6347;"></i> Despesas
-                              </span>
-                            </div>
-                      	</div>
-                    </div>
-              	</div>
-        	</div>
-        	<br/><br/>
-        	<div class="row" id="valor-caixa" style="display : none;">
-            	<div class="col-sm-8">
-            		<h3>Valor Atual em Caixa: <span style="color:blue;">R$ <?php echo number_format($valorCaixa->getValor(),2,',','.') ; ?></span></h3>
-            	</div>
-           	</div>
-			<div class="row">
-            	<div class="col-sm-8">
-					Total: <label><?php echo $qtdLotes; ?> Lotes </label><br/>
-					Contribuintes: <label><?php echo $qtdContribuintes ." ( ". number_format($percent,2,',','.') . " % )" ;?>  </label>
+			
+			<div id="showifTransparencia-nc" style="display : none;">
+				<h3 style="color: #3c9725;">Essa funcionalidade é habilitada apenas para os lotes contribuintes.</h3>
+			</div>
+			<div id="joinSystem" style="display : none;">
+				Você deve <a href="customer-login">acessar</a>
+				ou <a href="register">cadastrar-se</a> para prosseguir.
+			</div>
+			<div id="showifTransparencia" style="display : none;">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="card">
+							<div class="card-header border-0">
+								<div class="d-flex justify-content-between">
+									<h4 class="card-title">Dados dos &uacute;ltimos 12 meses:</h4>
+								</div>
+							</div>
+							<div class="card-body">
+								<div class="position-relative mb-4">
+								<canvas id="sales-chart" height="200"></canvas>
+								</div>
+			
+								<div class="d-flex flex-row justify-content-end">
+								<span class="mr-2">
+									<i class="fas fa-square" style="color: #007bff;"></i> Receitas
+								</span>
+				
+								<span>
+									<i class="fas fa-square" style="color: #FF6347;"></i> Despesas
+								</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-           	</div>
-        	
+				<br/><br/>
+				<div class="row" id="valor-caixa" style="display : none;">
+					<div class="col-sm-8">
+						<h3>Valor Atual em Caixa: <span style="color:blue;">R$ <?php echo number_format($valorCaixa->getValor(),2,',','.') ; ?></span></h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8">
+						Total: <label><?php echo $qtdLotes; ?> Lotes </label><br/>
+						Contribuintes: <label><?php echo $qtdContribuintes ." ( ". number_format($percent,2,',','.') . " % )" ;?>  </label>
+					</div>
+				</div>
+			</div>
+			
+
 		</div>
 	</div>
 </div>
 
 <script>
+	verifyContribui("showifTransparencia");
 
 	let _customer = getCustomer();
 	if(_customer && _customer.contribui){
